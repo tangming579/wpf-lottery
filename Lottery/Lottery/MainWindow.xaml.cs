@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Lottery
     public partial class MainWindow : Window
     {
         private bool _isEntrieView = false; //全屏状态
+        private List<PersonInfo> PersonList = new List<PersonInfo>();
 
         public MainWindow()
         {
@@ -31,6 +33,21 @@ namespace Lottery
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             EntireView();
+
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "peoplelist.txt");
+            if (!System.IO.File.Exists(path))
+            {
+                MessageBox.Show("文件不存在！");
+                return;
+            }
+            var info = File.ReadAllText(path);
+            var personList = info.Split('\n').ToList();
+            foreach(var person in personList)
+            {
+                var infos = person.Split(' ').ToList();
+                if (infos.Count < 2) continue;
+                PersonList.Add(new PersonInfo { Id = infos[0].Trim(), Name = infos[1].Trim() });
+            }
         }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
