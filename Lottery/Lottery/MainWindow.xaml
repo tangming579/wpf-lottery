@@ -5,13 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lottery"
         mc:Ignorable="d" Keyboard.PreviewKeyDown="Window_PreviewKeyDown"
-        Title="2019年会抽奖" Height="768" Width="1024">
+        Title="2019年会抽奖" Height="768" Width="1366">
     <Grid>
         <Image Stretch="Fill" Source="图片1.jpg"></Image>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="360" Margin="0,0,100,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="199*"/>
+                <ColumnDefinition Width="301*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="姓名" Margin="5,0,0,0" FontSize="40" Foreground="Red">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black"></DropShadowEffect>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock Text="工号" Grid.Column="1" FontSize="40" Foreground="Red">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black"></DropShadowEffect>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Border Grid.ColumnSpan="2" Grid.Row="1" BorderThickness="3" VerticalAlignment="Bottom" Height="94" Background="#FF4F81BD" BorderBrush="#FF385D8A">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="199*"/>
+                        <ColumnDefinition Width="301*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="txtName" Margin="5,0,0,0" Text="" VerticalAlignment="Center" FontSize="30" Foreground="White">
+                       
+                    </TextBlock>
+                    <TextBlock x:Name="txtNo" Text="" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Foreground="White">
+                        
+                    </TextBlock>
+                </Grid>
+            </Border>
+            <Button x:Name="btnStart" Margin="0,30,0,0" Content="开始" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStart_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75"/>
+            <Button x:Name="btnStop" Content="结束" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStop_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75"/>
+
+        </Grid>
         <TextBlock x:Name="txt" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"></TextBlock>
-        <Button x:Name="btnStart" Content="开始" Click="btnStart_Click" HorizontalAlignment="Left" Margin="172,507,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnStop" Content="结束" Click="btnStop_Click" HorizontalAlignment="Left" Margin="272,507,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBlock HorizontalAlignment="Left" Margin="77,121,0,0" TextWrapping="Wrap" Text="中奖名单：" FontSize="30" Foreground="Red" VerticalAlignment="Top"/>
-        <StackPanel x:Name="List" HorizontalAlignment="Left" Height="220" Margin="80,184,0,0" VerticalAlignment="Top" Width="226"/>
+        <TextBlock HorizontalAlignment="Left" Margin="101,151,0,0" TextWrapping="Wrap" Text="中奖名单：" FontSize="28" Foreground="Yellow" VerticalAlignment="Top"/>
+        <StackPanel x:Name="List" HorizontalAlignment="Left" Height="220" Margin="104,214,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

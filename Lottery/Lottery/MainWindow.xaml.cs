@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Lottery
         DispatcherTimer timer = new DispatcherTimer();
         Random ran = new Random();
         private PersonInfo Current;
+        int count;
 
         public MainWindow()
         {
@@ -40,12 +42,14 @@ namespace Lottery
         {
             var ranValue = ran.Next(0, PersonList.Count - 1);
             Current = PersonList[ranValue];
-            txt.Text = Current.Name + " " + Current.Id;
+            txtName.Text = Current.Name;
+            txtNo.Text = Current.Id;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             EntireView();
+            count = int.Parse(ConfigurationManager.AppSettings["count"]);
 
             var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "peoplelist.txt");
             if (!System.IO.File.Exists(path))
@@ -114,13 +118,27 @@ namespace Lottery
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
+            if (count <= 0)
+            {
+                MessageBox.Show("抽奖已完成！");
+                return;
+            }
+            count--;
             timer.Start();
+            btnStart.IsEnabled = false;
+            btnStop.IsEnabled = true;
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             timer.Stop();
-            List.Children.Add()
+            btnStart.IsEnabled = true;
+            btnStop.IsEnabled = false;
+
+            PersonList.Remove(Current);
+            var txt = new UserControl1();            
+            txt.txt.Text = Current.Name + " " + Current.Id;
+            List.Children.Add(txt);
         }
     }
 }
