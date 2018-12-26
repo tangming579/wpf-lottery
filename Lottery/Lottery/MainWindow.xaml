@@ -8,5 +8,10 @@
         Title="2019年会抽奖" Height="768" Width="1024">
     <Grid>
         <Image Stretch="Fill" Source="图片1.jpg"></Image>
+        <TextBlock x:Name="txt" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"></TextBlock>
+        <Button x:Name="btnStart" Content="开始" Click="btnStart_Click" HorizontalAlignment="Left" Margin="172,507,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnStop" Content="结束" Click="btnStop_Click" HorizontalAlignment="Left" Margin="272,507,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Margin="77,121,0,0" TextWrapping="Wrap" Text="中奖名单：" FontSize="30" Foreground="Red" VerticalAlignment="Top"/>
+        <StackPanel x:Name="List" HorizontalAlignment="Left" Height="220" Margin="80,184,0,0" VerticalAlignment="Top" Width="226"/>
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Lottery
 {
@@ -23,11 +24,23 @@ namespace Lottery
     {
         private bool _isEntrieView = false; //全屏状态
         private List<PersonInfo> PersonList = new List<PersonInfo>();
+        DispatcherTimer timer = new DispatcherTimer();
+        Random ran = new Random();
+        private PersonInfo Current;
 
         public MainWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
+            timer.Tick += Timer_Tick;
+            timer.Interval = TimeSpan.FromMilliseconds(10);
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            var ranValue = ran.Next(0, PersonList.Count - 1);
+            Current = PersonList[ranValue];
+            txt.Text = Current.Name + " " + Current.Id;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -42,7 +55,7 @@ namespace Lottery
             }
             var info = File.ReadAllText(path);
             var personList = info.Split('\n').ToList();
-            foreach(var person in personList)
+            foreach (var person in personList)
             {
                 var infos = person.Split(' ').ToList();
                 if (infos.Count < 2) continue;
@@ -97,6 +110,17 @@ namespace Lottery
 
                 _isEntrieView = false;
             }
+        }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Start();
+        }
+
+        private void btnStop_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+            List.Children.Add()
         }
     }
 }
