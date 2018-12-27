@@ -29,6 +29,7 @@ namespace Lottery
         Random ran = new Random();
         private PersonInfo Current;
         int count;
+        private static MediaPlayer player = new MediaPlayer();
 
         public MainWindow()
         {
@@ -65,6 +66,30 @@ namespace Lottery
                 if (infos.Count < 2) continue;
                 PersonList.Add(new PersonInfo { Id = infos[0].Trim(), Name = infos[1].Trim() });
             }
+
+            PlaySound();
+        }
+
+        private void PlaySound()
+        {
+            string file = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sound.mp3");
+            if (!File.Exists(file)) return;
+            try
+            {
+                player.Open(new Uri(file, UriKind.Relative));
+                player.MediaEnded -= Player_MediaEnded;
+                player.MediaEnded += Player_MediaEnded;
+                player.Play();
+            }
+            catch (Exception exp)
+            {
+
+            }
+        }
+
+        private static void Player_MediaEnded(object sender, EventArgs e)
+        {
+            player.Position = new TimeSpan(0);
         }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -136,7 +161,7 @@ namespace Lottery
             btnStop.IsEnabled = false;
 
             PersonList.Remove(Current);
-            var txt = new UserControl1();            
+            var txt = new UserControl1();
             txt.txt.Text = Current.Name + " " + Current.Id;
             List.Children.Add(txt);
         }

@@ -8,6 +8,11 @@
         Title="2019年会抽奖" Height="768" Width="1366">
     <Grid>
         <Image Stretch="Fill" Source="图片1.jpg"></Image>
+        <TextBlock Text="幸福抽奖" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200" Foreground="Yellow" FontSize="50">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black"></DropShadowEffect>
+            </TextBlock.Effect>
+        </TextBlock>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="360" Margin="0,0,100,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="199*"/>
@@ -42,8 +47,8 @@
                     </TextBlock>
                 </Grid>
             </Border>
-            <Button x:Name="btnStart" Margin="0,30,0,0" Content="开始" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStart_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75"/>
-            <Button x:Name="btnStop" Content="结束" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStop_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75"/>
+            <Button x:Name="btnStart" FontSize="30" Width="140" Height="60" Margin="0,50,0,0" Content="开始" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStart_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#FF007A2B" Foreground="White"/>
+            <Button x:Name="btnStop" FontSize="30"  Width="140" Height="60" Content="结束" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStop_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FFDB0000" Foreground="White"/>
 
         </Grid>
         <TextBlock x:Name="txt" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"></TextBlock>
