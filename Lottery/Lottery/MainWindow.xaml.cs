@@ -78,8 +78,8 @@ namespace Lottery
             {
                 player.Open(new Uri(file, UriKind.Relative));
                 player.MediaEnded -= Player_MediaEnded;
-                player.MediaEnded += Player_MediaEnded;
-                player.Play();
+                player.MediaEnded += Player_MediaEnded;                
+
             }
             catch (Exception exp)
             {
@@ -148,6 +148,8 @@ namespace Lottery
                 MessageBox.Show("抽奖已完成！");
                 return;
             }
+            if (player.Source != null)
+                player.Play();
             count--;
             timer.Start();
             btnStart.IsEnabled = false;
@@ -159,6 +161,7 @@ namespace Lottery
             timer.Stop();
             btnStart.IsEnabled = true;
             btnStop.IsEnabled = false;
+            player.Stop();
 
             PersonList.Remove(Current);
             var txt = new UserControl1();
