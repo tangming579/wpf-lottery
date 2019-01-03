@@ -42,6 +42,7 @@ namespace Lottery
         private void Timer_Tick(object sender, EventArgs e)
         {
             var ranValue = ran.Next(0, PersonList.Count - 1);
+            if (PersonList.Count == 0) return;
             Current = PersonList[ranValue];
             txtName.Text = Current.Name;
             txtNo.Text = Current.Id;
@@ -78,7 +79,7 @@ namespace Lottery
             {
                 player.Open(new Uri(file, UriKind.Relative));
                 player.MediaEnded -= Player_MediaEnded;
-                player.MediaEnded += Player_MediaEnded;                
+                player.MediaEnded += Player_MediaEnded;
 
             }
             catch (Exception exp)
@@ -146,6 +147,11 @@ namespace Lottery
             if (count <= 0)
             {
                 MessageBox.Show("抽奖已完成！");
+                return;
+            }
+            if (PersonList == null || PersonList.Count <= 0)
+            {
+                MessageBox.Show("无人可抽了！");
                 return;
             }
             if (player.Source != null)

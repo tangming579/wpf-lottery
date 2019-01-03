@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lottery" Icon="icon.png"
         mc:Ignorable="d" Keyboard.PreviewKeyDown="Window_PreviewKeyDown"
-        Title="2019年会抽奖" Height="768" Width="1366">
+        Title="2019年会抽奖" Height="768" Width="1366" MinHeight="768" MinWidth="1024">
     <Window.Resources>
         <ControlTemplate x:Key="ButtonControlTemplate1" TargetType="{x:Type Button}">
             <Grid Cursor="Hand" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
@@ -17,51 +17,54 @@
     </Window.Resources>
     <Grid>
         <Image Stretch="Fill" Source="图片1.jpg"></Image>
-        <TextBlock Text="幸福抽奖" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200" Foreground="Yellow" FontSize="50">
-            <TextBlock.Effect>
-                <DropShadowEffect Color="Black"></DropShadowEffect>
-            </TextBlock.Effect>
-        </TextBlock>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="360" Margin="0,0,100,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="199*"/>
-                <ColumnDefinition Width="301*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock Text="姓名" Margin="5,0,0,0" FontSize="40" Foreground="Red">
+        <StackPanel VerticalAlignment="Center">          
+            <TextBlock Text="幸 福 抽 奖" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,200" Foreground="Yellow" FontSize="50">
                 <TextBlock.Effect>
                     <DropShadowEffect Color="Black"></DropShadowEffect>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBlock Text="工号" Grid.Column="1" FontSize="40" Foreground="Red">
-                <TextBlock.Effect>
-                    <DropShadowEffect Color="Black"></DropShadowEffect>
-                </TextBlock.Effect>
-            </TextBlock>
-            <Border Grid.ColumnSpan="2" Grid.Row="1" BorderThickness="3" VerticalAlignment="Bottom" Height="94" Background="#FF4F81BD" BorderBrush="#FF385D8A">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="199*"/>
-                        <ColumnDefinition Width="301*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="txtName" Margin="5,0,0,0" Text="" VerticalAlignment="Center" FontSize="30" Foreground="White">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="360">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="199*"/>
+                    <ColumnDefinition Width="301*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="姓名" Margin="5,0,0,0" FontSize="40" Foreground="Red">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black"></DropShadowEffect>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock Text="工号" Grid.Column="1" FontSize="40" Foreground="Red">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black"></DropShadowEffect>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <Border Grid.ColumnSpan="2" Grid.Row="1" BorderThickness="3" VerticalAlignment="Bottom" Height="94" Background="#FF4F81BD" BorderBrush="#FF385D8A">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="199*"/>
+                            <ColumnDefinition Width="301*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="txtName" Margin="5,0,0,0" Text="" VerticalAlignment="Center" FontSize="30" Foreground="White">
 
-                    </TextBlock>
-                    <TextBlock x:Name="txtNo" Text="" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Foreground="White">
+                        </TextBlock>
+                        <TextBlock x:Name="txtNo" Text="" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Foreground="White">
 
-                    </TextBlock>
-                </Grid>
-            </Border>
-            <Button x:Name="btnStart" FontSize="30" Width="140" Height="60" Margin="0,50,0,0" Content="开始" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStart_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#FF007A2B" Foreground="White" Template="{DynamicResource ButtonControlTemplate1}"/>
-            <Button x:Name="btnStop" FontSize="30"  Width="140" Height="60" Content="结束" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStop_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FFDB0000" Foreground="White" Template="{DynamicResource ButtonControlTemplate1}"/>
+                        </TextBlock>
+                    </Grid>
+                </Border>
+                <Button x:Name="btnStart" FontSize="30" Width="140" Height="60" Margin="0,50,0,0" Content="开始" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStart_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#FF007A2B" Foreground="White" Template="{DynamicResource ButtonControlTemplate1}"/>
+                <Button x:Name="btnStop" FontSize="30"  Width="140" Height="60" Content="结束" Grid.Row="2" Grid.ColumnSpan="2" Click="btnStop_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FFDB0000" Foreground="White" Template="{DynamicResource ButtonControlTemplate1}"/>
 
-        </Grid>
+            </Grid>
+        </StackPanel>
+       
         <TextBlock x:Name="txt" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="101,151,0,0" TextWrapping="Wrap" Text="中奖名单：" FontSize="28" Foreground="Yellow" VerticalAlignment="Top"/>
-        <StackPanel x:Name="List" HorizontalAlignment="Left" Height="220" Margin="104,214,0,0" VerticalAlignment="Top"/>
+        <WrapPanel x:Name="List" HorizontalAlignment="Left" Margin="104,214,0,100" VerticalAlignment="Stretch" Orientation="Vertical"/>
     </Grid>
 </Window>
